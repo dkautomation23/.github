@@ -1,0 +1,35 @@
+name: It should also do X
+description: Something the tool does not do and, in your view, should.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Each README has an "Honest limits" section listing what the tool
+        deliberately does not do and why. If your request is on that list, say
+        why the reasoning does not hold for your case — that is a better
+        argument than the feature on its own.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you were trying to do
+      description: The task, not the feature. What the tool should have let you finish.
+    validations:
+      required: true
+
+  - type: textarea
+    id: today
+    attributes:
+      label: How you work around it today
+      description: >-
+        A spreadsheet, a second script, doing it by hand. This is the part that
+        says how much the feature is actually worth.
+    validations:
+      required: true
+
+  - type: textarea
+    id: shape
+    attributes:
+      label: What the flag or output would look like
+      description: A guess is fine. It makes the discussion concrete.

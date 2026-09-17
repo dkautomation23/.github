@@ -1,0 +1,49 @@
+name: Something is wrong
+description: The tool did something other than what it says it does.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Every tool here has an `--selftest` or a test suite. If that passes and
+        the tool still misbehaves on your data, the data is the interesting part
+        — a small sample that reproduces it is worth more than a description.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The release you are on, or the commit if you built it yourself.
+      placeholder: v1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: command
+    attributes:
+      label: The exact command you ran
+      placeholder: csvdiff before.csv after.csv --key customer_id --ignore updated_at
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+      description: Paste the output. If it is long, the first twenty lines are usually enough.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample
+    attributes:
+      label: Smallest input that reproduces it
+      description: >-
+        Please remove anything real first — names, addresses, card numbers,
+        account references. A handmade file with three rows is ideal.
+
+  - type: input
+    id: platform
+    attributes:
+      label: OS and runtime version
+      placeholder: Ubuntu 24.04, Node 22.12 / Python 3.12 / Rust 1.98
