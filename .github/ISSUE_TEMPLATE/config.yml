@@ -1,11 +1,8 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
-  - name: Work with me
+  - name: Question, or paid work
     url: mailto:hello@dkautomation.dev
-    about: >-
-      Automation, integration or data work you want built. Tell me what breaks
-      today and what it costs you; I answer with an approach and a number, or
-      with "this is not my job" and who to ask instead.
-  - name: What I build
-    url: https://dkautomation23.github.io
-    about: The tools, what each one is for, and how to try one in thirty seconds.
+    about: Anything that is not a bug report or a feature request
+  - name: Security report
+    url: https://github.com/dkautomation23/.github/blob/main/SECURITY.md
+    about: Report a vulnerability privately, never in a public issue
