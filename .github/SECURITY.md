@@ -1,38 +1,63 @@
-# Reporting a security issue
+# Security policy
 
-Email **hello@dkautomation.dev**. Please do not open a public issue for anything
-that lets someone read data they should not.
+This is the default policy for every repository under
+[github.com/dkautomation23](https://github.com/dkautomation23) that does not
+carry its own. Most of them do carry their own, because what counts as a
+vulnerability differs from tool to tool; that file wins where it exists.
 
-I read reports within two working days and tell you what I intend to do. If it is
-real, you get the fix and the release that carries it; if it is not, you get the
-reasoning rather than silence.
+## Reporting
 
-## What counts here
+Use GitHub's private reporting on the repository in question:
+**Security → Report a vulnerability**. It creates a private thread with me and
+nothing is public until there is a fix.
 
-These are command-line tools and small services that people point at their own
-data. The things worth reporting:
+If that is not available to you, write to **hello@dkautomation.dev** with the
+repository name in the subject.
 
-- **A secret that escapes.** Anything that writes a credential, token or signing
-  secret to disk, to a log, to a report or to the network. Redaction that can be
-  bypassed belongs in this category.
-- **Data crossing a boundary it should not.** A tool reading a path outside what
-  it was given, or sending data anywhere other than the target you named.
-- **A guardrail that does not hold.** In `mcp-data-server` that means the table
-  allowlist, PII masking, row caps or the read-only barrier; in
-  `webhook-rewind` it means signature handling.
-- **Code execution from input.** A payload, CSV, image or document that makes a
-  tool run something.
+Please include the version, the exact command or request, and what happened.
+A proof of concept is welcome; a scanner's raw output usually is not.
 
-## What does not
+**Do not open a public issue for a vulnerability.** A public issue is a
+disclosure, and it is unfair to anyone running the tool.
 
-- A tool doing exactly what its README says, where you disagree with the default.
-  Open a normal issue instead.
-- Findings from a scanner with no working path to abuse.
-- Dependency advisories that the code cannot reach. Say which call path reaches
-  it and it becomes the first list.
-- Anything requiring an attacker who already has your shell.
+## What to expect
 
-## Supported versions
+| | |
+|---|---|
+| First reply | within 2 working days |
+| Assessment | within 7 working days of the first reply |
+| Fix or a stated decision not to fix | within 30 days for anything I can reproduce |
 
-The latest release of each tool. These are small enough that a fix is a new
-release rather than a backport.
+These are a single person's commitments, not a company SLA, and they are what I
+have kept so far rather than what sounds impressive.
+
+## Scope
+
+Supported: the latest release of each tool, and the default branch.
+
+In scope, in general terms:
+
+- input from outside the operator — a file, a webhook, an API response, a page
+  fetched from a third party — that causes the tool to read or write somewhere
+  it was not asked to, execute code, or send data to an unintended place;
+- a secret ending up somewhere it should not: a log, a report, a saved
+  baseline, a committed fixture;
+- a check that reports "clean" for something it did detect, where the tool's
+  job is exactly to report it.
+
+Out of scope:
+
+- a missed finding in a detection tool. That is a bug — open an issue, it will
+  be taken seriously, but it is not a vulnerability;
+- anything requiring the operator to run the tool against their own machine on
+  purpose, with the flags that say so;
+- the availability of a third-party service the tool reads from;
+- findings from an automated scanner with no demonstrated impact.
+
+## Credit
+
+If you want it, you are named in the release notes for the fix. If you prefer
+not to be, say so and you will not be.
+
+There is no bug bounty. I am one person and I would rather promise nothing than
+promise money I have not set aside.
